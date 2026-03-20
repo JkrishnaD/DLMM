@@ -23,4 +23,8 @@ pub mod dlmm {
     ) -> Result<()> {
         initialize::handler(ctx, active_bin_id, bin_step, fees)
     }
+
+    pub fn initialize_bin_array(ctx: Context<InitializeBinArray>, start_bin_id: i32) -> Result<()> {
+        initialize_bin_array::bin_array_handler(ctx, start_bin_id)
+    }
 }

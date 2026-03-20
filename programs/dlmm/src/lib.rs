@@ -15,7 +15,12 @@ declare_id!("J7efo9smyWU6SXPajaibUMNLW7DZKFq5nFDpa2KttXj");
 pub mod dlmm {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        initialize::handler(ctx)
+    pub fn initialize(
+        ctx: Context<Initialize>,
+        active_bin_id: i32,
+        bin_step: u16,
+        fees: u16,
+    ) -> Result<()> {
+        initialize::handler(ctx, active_bin_id, bin_step, fees)
     }
 }

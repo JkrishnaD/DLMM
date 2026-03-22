@@ -8,6 +8,7 @@ pub const SEED: &str = "anchor";
 pub const POOL_SEED: &[u8] = b"pool";
 pub const BIN_ARRAY_SEED: &[u8] = b"bin_array";
 pub const POSITION_SEED: &[u8] = b"position";
+pub const FEE_PRECISION: f64 = 1e12;
 
 pub fn find_bin_array<'info>(
     remaining_accounts: &'info [AccountInfo<'info>],

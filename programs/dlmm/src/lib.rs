@@ -37,4 +37,13 @@ pub mod dlmm {
     ) -> Result<()> {
         add_liquidity::liquidity_handler(ctx, lower_bin_id, upper_bin_id, amount_x, amount_y)
     }
+
+    pub fn remove_liquidity<'info>(
+        ctx: Context<'_, '_, 'info, 'info, RemoveLiquidity<'info>>,
+        lower_bin_id: i32,
+        upper_bin_id: i32,
+        liquidity_bps: u16,
+    ) -> Result<()> {
+        remove_liquidity::remove_liquidity(ctx, lower_bin_id, upper_bin_id, liquidity_bps)
+    }
 }

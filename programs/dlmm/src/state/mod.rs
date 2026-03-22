@@ -59,12 +59,13 @@ pub struct Position {
     pub upper_bin_id: i32,
     pub fee_owned_by_x: u64,
     pub fee_owned_by_y: u64,
-    pub liquidity_share: u128,
-    pub fee_growth_inside_x: u128,
-    pub fee_growth_inside_y: u128,
+    pub liquidity_shares: [u128; 70], // Total slots of 70 shares for each position
+    pub fee_growth_inside_x: [u128; 70], // Having a limit of 70 slots per array
+    pub fee_growth_inside_y: [u128; 70],
     pub bump: u8,
 }
 
 impl Position {
-    pub const LEN: usize = 8 + 2 * 32 + 2 * 4 + 2 * 8 + 3 * 16 + 1;
+    pub const LEN: usize = 8 + 2 * 32 + 2 * 4 + 2 * 8 + 3 * (16 * 70) + 1;
+    pub const MAX_BINS: i32 = 70;
 }

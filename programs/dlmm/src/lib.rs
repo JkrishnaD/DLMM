@@ -27,4 +27,14 @@ pub mod dlmm {
     pub fn initialize_bin_array(ctx: Context<InitializeBinArray>, start_bin_id: i32) -> Result<()> {
         initialize_bin_array::bin_array_handler(ctx, start_bin_id)
     }
+
+    pub fn add_liquidity<'info>(
+        ctx: Context<'_, '_, 'info, 'info, AddLiquidity<'info>>,
+        lower_bin_id: i32,
+        upper_bin_id: i32,
+        amount_x: u64,
+        amount_y: u64,
+    ) -> Result<()> {
+        add_liquidity::liquidity_handler(ctx, lower_bin_id, upper_bin_id, amount_x, amount_y)
+    }
 }

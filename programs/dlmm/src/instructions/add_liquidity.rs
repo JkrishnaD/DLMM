@@ -78,7 +78,7 @@ pub struct AddLiquidity<'info> {
 /// bin_id > pool.active_bin_id => They bin contains X tokens.
 /// bin_id == pool.active_bin_id => The both tokens lives here.
 /// bin_id < pool.active_bin_id => They bin contains Y tokens
-pub fn position_handler<'info>(
+pub fn liquidity_handler<'info>(
     ctx: Context<'_, '_, 'info, 'info, AddLiquidity<'info>>,
     lower_bin_id: i32,
     upper_bin_id: i32,

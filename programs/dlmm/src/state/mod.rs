@@ -1,9 +1,5 @@
 use anchor_lang::prelude::*;
 
-pub const POOL_SEED: &[u8] = b"pool";
-pub const BIN_ARRAY_SEED: &[u8] = b"bin_array";
-pub const POSITION_SEED: &[u8] = b"position";
-
 #[account]
 pub struct Pool {
     pub authority: Pubkey,

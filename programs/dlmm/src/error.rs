@@ -24,4 +24,6 @@ pub enum DlmmErrors {
     OutOfBounds,
     #[msg("Invalid bin index")]
     InvalidBinIndex,
+    #[msg("Invalid pool")]
+    InvalidPool,
 }

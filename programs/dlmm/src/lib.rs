@@ -46,4 +46,13 @@ pub mod dlmm {
     ) -> Result<()> {
         remove_liquidity::remove_liquidity_handler(ctx, lower_bin_id, upper_bin_id, liquidity_bps)
     }
+
+    pub fn swap<'info>(
+        ctx: Context<'_, '_, 'info, 'info, Swap<'info>>,
+        amount_in: u64,
+        min_amount_out: u64,
+        swap_for_y: bool,
+    ) -> Result<()> {
+        swap::swap_handler(ctx, amount_in, min_amount_out, swap_for_y)
+    }
 }

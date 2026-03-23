@@ -26,4 +26,12 @@ pub enum DlmmErrors {
     InvalidBinIndex,
     #[msg("Invalid pool")]
     InvalidPool,
+    #[msg("Invalid amount")]
+    InvalidAmount,
+    #[msg("Slippage exceeded")]
+    SlippageExceeded,
+    #[msg("Zero output")]
+    ZeroOutput,
+    #[msg("Out of liquidity")]
+    OutOfLiquidity,
 }

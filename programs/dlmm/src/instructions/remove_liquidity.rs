@@ -68,7 +68,7 @@ pub struct RemoveLiquidity<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn remove_liquidity<'info>(
+pub fn remove_liquidity_handler<'info>(
     ctx: Context<'_, '_, 'info, 'info, RemoveLiquidity<'info>>,
     lower_bin_id: i32,
     upper_bin_id: i32,
@@ -76,7 +76,7 @@ pub fn remove_liquidity<'info>(
 ) -> Result<()> {
     require!(lower_bin_id <= upper_bin_id, DlmmErrors::InvalidBinRange);
     require!(
-        upper_bin_id - lower_bin_id < Position::MAX_BINS as i32,
+        upper_bin_id - lower_bin_id < Position::MAX_BINS,
         DlmmErrors::RangeExceedMaxBins
     );
     require!(

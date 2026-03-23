@@ -53,6 +53,6 @@ pub mod dlmm {
         upper_bin_id: i32,
         liquidity_bps: u16,
     ) -> Result<()> {
-        remove_liquidity::remove_liquidity(ctx, lower_bin_id, upper_bin_id, liquidity_bps)
+        remove_liquidity::remove_liquidity_handler(ctx, lower_bin_id, upper_bin_id, liquidity_bps)
     }
 }

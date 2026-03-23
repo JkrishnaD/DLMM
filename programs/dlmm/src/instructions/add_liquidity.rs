@@ -78,7 +78,7 @@ pub struct AddLiquidity<'info> {
 /// bin_id > pool.active_bin_id => They bin contains X tokens.
 /// bin_id == pool.active_bin_id => The both tokens lives here.
 /// bin_id < pool.active_bin_id => They bin contains Y tokens
-pub fn liquidity_handler<'info>(
+pub fn add_liquidity_handler<'info>(
     ctx: Context<'_, '_, 'info, 'info, AddLiquidity<'info>>,
     lower_bin_id: i32,
     upper_bin_id: i32,
@@ -88,7 +88,7 @@ pub fn liquidity_handler<'info>(
     // validation checks
     require!(lower_bin_id <= upper_bin_id, DlmmErrors::InvalidBinRange);
     require!(
-        upper_bin_id - lower_bin_id < Position::MAX_BINS as i32,
+        upper_bin_id - lower_bin_id < Position::MAX_BINS,
         DlmmErrors::RangeExceedMaxBins
     );
     require!(amount_x > 0 || amount_y > 0, DlmmErrors::ZeroAmount);
@@ -121,12 +121,16 @@ pub fn liquidity_handler<'info>(
     // bin below gets the y tokens, bin above gets the x tokens
     // active bin gets both tokens
     let amount_x_per_bin = if bins_above > 0 {
-        amount_x / bins_above
+        amount_x
+            .checked_div(bins_above)
+            .ok_or(DlmmErrors::MathOverflow)?
     } else {
         0
     };
     let amount_y_per_bin = if bins_below > 0 {
-        amount_y / bins_below
+        amount_y
+            .checked_div(bins_below)
+            .ok_or(DlmmErrors::MathOverflow)?
     } else {
         0
     };
@@ -293,7 +297,7 @@ pub fn integer_sqrt(n: u128) -> u128 {
         return 0;
     }
     let mut x = n;
-    let mut y = (x + 1) / 2;
+    let mut y = x.div_ceil(2);
     while y < x {
         x = y;
         y = (x + n / x) / 2;

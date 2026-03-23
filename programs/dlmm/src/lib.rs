@@ -1,9 +1,9 @@
+use anchor_lang::prelude::*;
+
 pub mod constants;
 pub mod error;
 pub mod instructions;
 pub mod state;
-
-use anchor_lang::prelude::*;
 
 pub use constants::*;
 pub use instructions::*;
@@ -35,7 +35,7 @@ pub mod dlmm {
         amount_x: u64,
         amount_y: u64,
     ) -> Result<()> {
-        add_liquidity::liquidity_handler(ctx, lower_bin_id, upper_bin_id, amount_x, amount_y)
+        add_liquidity::add_liquidity_handler(ctx, lower_bin_id, upper_bin_id, amount_x, amount_y)
     }
 
     pub fn remove_liquidity<'info>(
@@ -44,6 +44,6 @@ pub mod dlmm {
         upper_bin_id: i32,
         liquidity_bps: u16,
     ) -> Result<()> {
-        remove_liquidity::remove_liquidity(ctx, lower_bin_id, upper_bin_id, liquidity_bps)
+        remove_liquidity::remove_liquidity_handler(ctx, lower_bin_id, upper_bin_id, liquidity_bps)
     }
 }
